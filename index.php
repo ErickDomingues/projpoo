@@ -1,15 +1,22 @@
 <?php
-require_once './Cliente.php';
+require_once './ClientePF.php';
 
-for ($index = 0; $index < 10; $index++) {
-    $Cliente[$index] = new Cliente();
-    $Cliente[$index]->setNome('Individuo' . $index);
-    $Cliente[$index]->setSobrenome('da Silva' . $index);
-    $Cliente[$index]->setSexo('Feminino');
-    $Cliente[$index]->setRg('1236541235-' . $index);
-    $Cliente[$index]->setCpf('321.123.321-2' . $index);
-    $Cliente[$index]->setEndereco('Rua ' . $index);
-    $Cliente[$index]->setAtivo('Sim');
+require_once './ClientePJ.php';
+
+for ($index = 0; $index < 5; $index++) {
+    $Cliente[$index][0] = new ClientePF('Individuo ' . $index, 'Rua ' . $index, 'Rua ' . $index, 'sim', 'Clienete ' . $index);
+    $Cliente[$index][0]->setCpf('321156321-1'.$index);
+    $Cliente[$index][0]->setRg('12456321-'.$index);
+    $Cliente[$index][0]->setSexo('Feminino');
+    $Cliente[$index][0]->setSobreNome('se Souza '.$index);
+    $Cliente[$index][1]="Física";
+    
+    $Cliente[$index+5][0] = new ClientePJ('Empresa ' . ($index+5), 'Rua ' . ($index+5), 'Rua ' . ($index+5), 'sim', 'Clienete ' . $index);
+    $Cliente[$index+5][0]->setCnpj('123.123.456/0001-1'.($index+5));
+    $Cliente[$index+5][0]->setIe('123.123.456.'.($index+5));
+    $Cliente[$index+5][0]->setIm('123.123.456.'.($index+5));
+    $Cliente[$index+5][0]->setRazaoSocial('Empresa'.($index+5).'LTDA');
+    $Cliente[$index+5][1]="Jurídica";
 }
 ?>
 <!DOCTYPE html>
@@ -23,9 +30,9 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title></title>
 
-        <link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
-        <script src="bootstrap/js/jquery-1.11.3.min.js"></script>
-        <script src="bootstrap/js/bootstrap.js"></script>
+        <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="bootstrap/js/jquery-1.11.3.min.js" ></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap.js" ></script>
 
     </head>
     <body>
@@ -40,27 +47,24 @@ and open the template in the editor.
                             Nome
                         </td>
                         <td>
-                            Sobrenome
-                        </td>
-                        <td>
-                            Sexo
-                        </td>
-                        <td>
-                            RG
-                        </td>
-                        <td>
-                            CPF
-                        </td>
-                        <td>
                             Endereço
+                        </td>
+                        <td>
+                            Endereço Cobrança
                         </td>
                         <td>
                             Ativo
                         </td>
+                        <td>
+                            Grau Importância
+                        </td>
+                        <td>
+                            Tipo Pessoa
+                        </td>
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <?php
                     if (isset($_GET['ordem'])) {
                         if ($_GET['ordem'] === 'desc') {
@@ -73,39 +77,34 @@ and open the template in the editor.
                         <tr>
                             <td>                    
                                 <?php
-                                echo $Cliente[$index]->getNome();
+                                echo $Cliente[$index][0]->getNome();
                                 ?>
                             </td>
                             <td>                    
                                 <?php
-                                echo $Cliente[$index]->getSobrenome();
+                                echo $Cliente[$index][0]->getEndereco();
                                 ?>
                             </td>
                             <td>                    
                                 <?php
-                                echo $Cliente[$index]->getSexo();
+                                echo $Cliente[$index][0]->getEnderecoCobranca();
                                 ?>
                             </td>
                             <td>                    
                                 <?php
-                                echo $Cliente[$index]->getRg();
+                                echo $Cliente[$index][0]->getAtivo();
                                 ?>
                             </td>
                             <td>                    
                                 <?php
-                                echo $Cliente[$index]->getCpf();
+                                echo $Cliente[$index][0]->getGrauImportancia();
                                 ?>
                             </td>
                             <td>                    
                                 <?php
-                                echo $Cliente[$index]->getEndereco();
+                                    echo $Cliente[$index][1];
                                 ?>
                             </td>
-                            <td>                    
-                                <?php
-                                echo $Cliente[$index]->getAtivo();
-                                ?>
-                            <td>
                         <tr>                 
                             <?php
                         }
