@@ -1,8 +1,8 @@
 <?php
 
-require_once './ClienteAbstract.php';
+namespace Clientes\Tipos;
 
-class ClientePF extends ClienteAbstract{
+class ClientePF extends \Clientes\ClienteAbstract{
     
     private $sobreNome;
     private $sexo;

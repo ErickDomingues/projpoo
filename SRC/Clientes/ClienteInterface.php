@@ -1,5 +1,7 @@
 <?php
 
+namespace Clientes;
+
 interface ClienteInterface {
 
     public function getNome();

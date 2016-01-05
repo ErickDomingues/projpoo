@@ -1,7 +1,7 @@
 <?php
-require_once './ClientePF.php';
+require_once './SRC/Clientes/Tipos/ClientePF.php';
 
-require_once './ClientePJ.php';
+require_once './SRC/Clientes/Tipos/ClientePJ.php';
 
 for ($index = 0; $index < 5; $index++) {
     $Cliente[$index][0] = new ClientePF('Individuo ' . $index, 'Rua ' . $index, 'Rua ' . $index, 'sim', 'Clienete ' . $index);

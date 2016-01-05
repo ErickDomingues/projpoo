@@ -1,8 +1,9 @@
 <?php
 
-require_once './ClienteInterface.php';
 
-abstract class ClienteAbstract implements ClienteInterface {
+namespace Clientes;
+
+abstract class ClienteAbstract implements \Clientes\ClienteInterface {
 
     private $nome;
     private $endereco;

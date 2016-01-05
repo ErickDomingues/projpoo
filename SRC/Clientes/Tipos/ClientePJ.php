@@ -1,8 +1,9 @@
 <?php
 
-require_once './ClienteAbstract.php';
 
-class ClientePJ extends ClienteAbstract {
+namespace Clientes\Tipos;
+
+class ClientePJ extends \Clientes\ClienteAbstract {
 
     function getCnpj() {
         return $this->cnpj;
