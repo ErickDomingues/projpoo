@@ -1,7 +1,10 @@
 <?php
-require_once './SRC/Clientes/Tipos/ClientePF.php';
+require_once 'SRC/Clientes/Tipos/ClientePF.php';
 
-require_once './SRC/Clientes/Tipos/ClientePJ.php';
+require_once 'SRC/Clientes/Tipos/ClientePJ.php';
+
+use Clientes\Tipos\ClientePF;
+use Clientes\Tipos\ClientePJ;
 
 for ($index = 0; $index < 5; $index++) {
     $Cliente[$index][0] = new ClientePF('Individuo ' . $index, 'Rua ' . $index, 'Rua ' . $index, 'sim', 'Clienete ' . $index);
@@ -111,9 +114,6 @@ and open the template in the editor.
                         ?>
                 </tbody>
             </table>
-            <?php
-            // put your code here
-            ?>
         </div>
     </body>
 </html>

@@ -3,7 +3,9 @@
 
 namespace Clientes;
 
-abstract class ClienteAbstract implements \Clientes\ClienteInterface {
+require_once __DIR__ . "/ClienteInterface.php";
+
+abstract class ClienteAbstract implements ClienteInterface {
 
     private $nome;
     private $endereco;

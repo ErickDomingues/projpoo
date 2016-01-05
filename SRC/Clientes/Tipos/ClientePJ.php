@@ -3,7 +3,11 @@
 
 namespace Clientes\Tipos;
 
-class ClientePJ extends \Clientes\ClienteAbstract {
+require_once __DIR__ . "/../ClienteAbstract.php";
+
+use Clientes\ClienteAbstract;
+
+class ClientePJ extends ClienteAbstract {
 
     function getCnpj() {
         return $this->cnpj;
