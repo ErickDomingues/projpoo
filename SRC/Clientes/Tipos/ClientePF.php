@@ -2,7 +2,9 @@
 
 namespace Clientes\Tipos;
 
-require_once '../ClienteAbstract.php';
+require_once __DIR__ . '/../ClienteAbstract.php';
+
+use Clientes\ClienteAbstract;
 
 class ClientePF extends ClienteAbstract{
     
