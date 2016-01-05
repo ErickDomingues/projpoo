@@ -4,7 +4,7 @@ namespace Clientes\Tipos;
 
 require_once '../ClienteAbstract.php';
 
-class ClientePF extends \Clientes\ClienteAbstract{
+class ClientePF extends ClienteAbstract{
     
     private $sobreNome;
     private $sexo;
