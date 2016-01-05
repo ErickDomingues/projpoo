@@ -1,22 +1,29 @@
 <?php
-require_once './SRC/Clientes/Tipos/ClientePF.php';
+define('CLASS_DIR', 'SRC/');
+set_include_path(get_include_path() . PATH_SEPARATOR . CLASS_DIR);
+spl_autoload_register();
 
-require_once './SRC/Clientes/Tipos/ClientePJ.php';
+//require_once 'SRC/Clientes/Tipos/ClientePF.php';
+//
+//require_once 'SRC/Clientes/Tipos/ClientePJ.php';
+
+use Clientes\Tipos\ClientePF;
+use Clientes\Tipos\ClientePJ;
 
 for ($index = 0; $index < 5; $index++) {
     $Cliente[$index][0] = new ClientePF('Individuo ' . $index, 'Rua ' . $index, 'Rua ' . $index, 'sim', 'Clienete ' . $index);
-    $Cliente[$index][0]->setCpf('321156321-1'.$index);
-    $Cliente[$index][0]->setRg('12456321-'.$index);
+    $Cliente[$index][0]->setCpf('321156321-1' . $index);
+    $Cliente[$index][0]->setRg('12456321-' . $index);
     $Cliente[$index][0]->setSexo('Feminino');
-    $Cliente[$index][0]->setSobreNome('se Souza '.$index);
-    $Cliente[$index][1]="Física";
-    
-    $Cliente[$index+5][0] = new ClientePJ('Empresa ' . ($index+5), 'Rua ' . ($index+5), 'Rua ' . ($index+5), 'sim', 'Clienete ' . $index);
-    $Cliente[$index+5][0]->setCnpj('123.123.456/0001-1'.($index+5));
-    $Cliente[$index+5][0]->setIe('123.123.456.'.($index+5));
-    $Cliente[$index+5][0]->setIm('123.123.456.'.($index+5));
-    $Cliente[$index+5][0]->setRazaoSocial('Empresa'.($index+5).'LTDA');
-    $Cliente[$index+5][1]="Jurídica";
+    $Cliente[$index][0]->setSobreNome('se Souza ' . $index);
+    $Cliente[$index][1] = "Física";
+
+    $Cliente[$index + 5][0] = new ClientePJ('Empresa ' . ($index + 5), 'Rua ' . ($index + 5), 'Rua ' . ($index + 5), 'sim', 'Clienete ' . $index);
+    $Cliente[$index + 5][0]->setCnpj('123.123.456/0001-1' . ($index + 5));
+    $Cliente[$index + 5][0]->setIe('123.123.456.' . ($index + 5));
+    $Cliente[$index + 5][0]->setIm('123.123.456.' . ($index + 5));
+    $Cliente[$index + 5][0]->setRazaoSocial('Empresa' . ($index + 5) . 'LTDA');
+    $Cliente[$index + 5][1] = "Jurídica";
 }
 ?>
 <!DOCTYPE html>
@@ -64,15 +71,27 @@ and open the template in the editor.
                     </tr>
                 </thead>
                 <tbody>
-                    
+
+
+
                     <?php
+
+                    
+
                     if (isset($_GET['ordem'])) {
                         if ($_GET['ordem'] === 'desc') {
-                            rsort($Cliente);
+                            $funcSomaSubtrai=function(&$var) {$var--;};
+                            $index = 9;
+                        } elseif ($_GET['ordem'] === 'asc') {
+                            $funcSomaSubtrai=function(&$var) {$var++;};
+                            $index = 0;
                         }
+                    } else {
+                        $funcSomaSubtrai=function(&$var) {$var++;};
+                        $index = 0;
                     }
 
-                    for ($index = 0; $index < 10; $index++) {
+                    while ($index < 10 && $index > -1) {
                         ?>
                         <tr>
                             <td>                    
@@ -102,11 +121,12 @@ and open the template in the editor.
                             </td>
                             <td>                    
                                 <?php
-                                    echo $Cliente[$index][1];
+                                echo $Cliente[$index][1];
                                 ?>
                             </td>
                         <tr>                 
                             <?php
+                            $funcSomaSubtrai($index);
                         }
                         ?>
                 </tbody>

@@ -1,9 +1,17 @@
 <?php
 
-
 namespace Clientes\Tipos;
 
-class ClientePJ extends \Clientes\ClienteAbstract {
+//require_once __DIR__ . '/../ClienteAbstract.php';
+
+use Clientes\ClienteAbstract;
+
+class ClientePJ extends ClienteAbstract {
+
+    private $cnpj;
+    private $ie;
+    private $im;
+    private $razaoSocial;
 
     function getCnpj() {
         return $this->cnpj;
@@ -36,10 +44,5 @@ class ClientePJ extends \Clientes\ClienteAbstract {
     function setRazaoSocial($razaoSocial) {
         $this->razaoSocial = $razaoSocial;
     }
-
-    private $cnpj;
-    private $ie;
-    private $im;
-    private $razaoSocial;
 
 }
