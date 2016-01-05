@@ -2,6 +2,8 @@
 
 namespace Clientes\Tipos;
 
+require_once '../ClienteAbstract.php';
+
 class ClientePF extends \Clientes\ClienteAbstract{
     
     private $sobreNome;
