@@ -1,6 +1,6 @@
 <?php
 
-namespace Clientes;
+namespace Entidades\Clientes;
 
 interface ClienteInterface {
 
@@ -24,4 +24,7 @@ interface ClienteInterface {
 
     public function setGrauImportancia($grau);
 
+    public function setTipoPessoa($tipoPessoa);
+
+    public function getTipoPessoa();
 }

@@ -3,28 +3,12 @@ define('CLASS_DIR', 'SRC/');
 set_include_path(get_include_path() . PATH_SEPARATOR . CLASS_DIR);
 spl_autoload_register();
 
-//require_once 'SRC/Clientes/Tipos/ClientePF.php';
-//
-//require_once 'SRC/Clientes/Tipos/ClientePJ.php';
+use serviceDB\serviceDB;
 
-use Clientes\Tipos\ClientePF;
-use Clientes\Tipos\ClientePJ;
-
-for ($index = 0; $index < 5; $index++) {
-    $Cliente[$index][0] = new ClientePF('Individuo ' . $index, 'Rua ' . $index, 'Rua ' . $index, 'sim', 'Clienete ' . $index);
-    $Cliente[$index][0]->setCpf('321156321-1' . $index);
-    $Cliente[$index][0]->setRg('12456321-' . $index);
-    $Cliente[$index][0]->setSexo('Feminino');
-    $Cliente[$index][0]->setSobreNome('se Souza ' . $index);
-    $Cliente[$index][1] = "Física";
-
-    $Cliente[$index + 5][0] = new ClientePJ('Empresa ' . ($index + 5), 'Rua ' . ($index + 5), 'Rua ' . ($index + 5), 'sim', 'Clienete ' . $index);
-    $Cliente[$index + 5][0]->setCnpj('123.123.456/0001-1' . ($index + 5));
-    $Cliente[$index + 5][0]->setIe('123.123.456.' . ($index + 5));
-    $Cliente[$index + 5][0]->setIm('123.123.456.' . ($index + 5));
-    $Cliente[$index + 5][0]->setRazaoSocial('Empresa' . ($index + 5) . 'LTDA');
-    $Cliente[$index + 5][1] = "Jurídica";
-}
+$db = new \serviceDB\ConexaoDB();
+$conexao = $db->getConexao();
+$stmt = new serviceDB($conexao);
+$Dados = $stmt->listar('clientes');
 ?>
 <!DOCTYPE html>
 <!--
@@ -75,19 +59,22 @@ and open the template in the editor.
 
 
                     <?php
-
-                    
-
                     if (isset($_GET['ordem'])) {
                         if ($_GET['ordem'] === 'desc') {
-                            $funcSomaSubtrai=function(&$var) {$var--;};
+                            $funcSomaSubtrai = function(&$var) {
+                                $var--;
+                            };
                             $index = 9;
                         } elseif ($_GET['ordem'] === 'asc') {
-                            $funcSomaSubtrai=function(&$var) {$var++;};
+                            $funcSomaSubtrai = function(&$var) {
+                                $var++;
+                            };
                             $index = 0;
                         }
                     } else {
-                        $funcSomaSubtrai=function(&$var) {$var++;};
+                        $funcSomaSubtrai = function(&$var) {
+                            $var++;
+                        };
                         $index = 0;
                     }
 
@@ -96,32 +83,32 @@ and open the template in the editor.
                         <tr>
                             <td>                    
                                 <?php
-                                echo $Cliente[$index][0]->getNome();
+                                echo $Dados[$index]['nome'];
                                 ?>
                             </td>
                             <td>                    
                                 <?php
-                                echo $Cliente[$index][0]->getEndereco();
+                                echo $Dados[$index]['endereco'];
                                 ?>
                             </td>
                             <td>                    
                                 <?php
-                                echo $Cliente[$index][0]->getEnderecoCobranca();
+                                echo $Dados[$index]['enderecoCobranca'];
                                 ?>
                             </td>
                             <td>                    
                                 <?php
-                                echo $Cliente[$index][0]->getAtivo();
+                                echo $Dados[$index]['ativo'];
                                 ?>
                             </td>
                             <td>                    
                                 <?php
-                                echo $Cliente[$index][0]->getGrauImportancia();
+                                echo $Dados[$index]['grauImportancia'];
                                 ?>
                             </td>
                             <td>                    
                                 <?php
-                                echo $Cliente[$index][1];
+                                echo $Dados[$index]['tipoPessoa'];
                                 ?>
                             </td>
                         <tr>                 
@@ -132,7 +119,7 @@ and open the template in the editor.
                 </tbody>
             </table>
             <?php
-            // put your code here
+// put your code here
             ?>
         </div>
     </body>

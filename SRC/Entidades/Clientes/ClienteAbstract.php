@@ -1,24 +1,51 @@
 <?php
 
-
-namespace Clientes;
+namespace Entidades\Clientes;
 
 //require_once __DIR__.'/ClienteInterface.php';
 
-abstract class ClienteAbstract implements \Clientes\ClienteInterface {
+abstract class ClienteAbstract implements \Entidades\Clientes\ClienteInterface, \Entidades\EntidadeInterface {
 
     private $nome;
     private $endereco;
     private $enderecoCobranca;
     private $ativo;
     private $grauImportancia;
+    private $tipoPessoa;
+    private $id;
+    private $table = 'clientes';
 
-    function __construct($nome,$endereco,$enderecoCobranca,$ativo,$grauImportancia) {
+    public function __construct($nome, $endereco, $enderecoCobranca, $ativo, $grauImportancia, $tipoPessoa) {
         $this->setNome($nome);
         $this->setEndereco($endereco);
         $this->setEnderecoCobranca($enderecoCobranca);
         $this->setAtivo($ativo);
         $this->setGrauImportancia($grauImportancia);
+        $this->setTipoPessoa($tipoPessoa);
+    }
+
+    public function getTipoPessoa() {
+        return $this->tipoPessoa;
+    }
+
+    public function setTipoPessoa($tipoPessoa) {
+        $this->tipoPessoa = $tipoPessoa;
+        return $this;
+    }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getTable() {
+        return $this->table;
+    }
+
+    abstract function getFields();
+
+    public function setId($id) {
+        $this->id = $id;
+        return $this;
     }
 
     public function getGrauImportancia() {

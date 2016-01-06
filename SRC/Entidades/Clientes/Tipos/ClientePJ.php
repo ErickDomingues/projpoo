@@ -1,10 +1,10 @@
 <?php
 
-namespace Clientes\Tipos;
+namespace Entidades\Clientes\Tipos;
 
 //require_once __DIR__ . '/../ClienteAbstract.php';
 
-use Clientes\ClienteAbstract;
+use Entidades\Clientes\ClienteAbstract;
 
 class ClientePJ extends ClienteAbstract {
 
@@ -12,6 +12,10 @@ class ClientePJ extends ClienteAbstract {
     private $ie;
     private $im;
     private $razaoSocial;
+
+    function getFields() {
+        return array('id' => $this->getId(), 'nome' => $this->getNome(), 'endereco' => $this->getEndereco(), 'enderecoCobranca' => $this->getEnderecoCobranca(), 'ativo' => $this->getAtivo(), 'grauImportancia' => $this->getGrauImportancia(), 'tipoPessoa' => $this->getTipoPessoa());
+    }
 
     function getCnpj() {
         return $this->cnpj;
