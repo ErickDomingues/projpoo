@@ -1,1 +1,1 @@
-php -S localhost:8087 -t "C:\Users\ERICK\Documents\NetBeansProjects\POO"
+php -S localhost:8087 -t "C:\Users\ERICK\Documents\NetBeansProjects"
